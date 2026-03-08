@@ -129,5 +129,11 @@ the theme as well."
 ;;;###autoload
 (modus-ewal-theme-generate-theme)
 
+;;;###autoload
+(when load-file-name
+  (let ((dir (file-name-directory load-file-name)))
+    (unless (equal dir (expand-file-name "themes/" data-directory))
+      (add-to-list 'custom-theme-load-path dir))))
+
 (provide 'modus-ewal-theme)
 ;;; modus-ewal-theme.el ends here
