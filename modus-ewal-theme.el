@@ -5,6 +5,7 @@
 ;; Author:  Oliwier Czerwiński <oliwier.czerwi@proton.me>
 ;; Keywords: faces theme
 ;; Version: 20260308
+;; URL: https://github.com/deadendpl/modus-ewal-theme
 ;; Package-Requires: ((emacs "25.1") (modus-themes "5.2.0") (ewal))
 
 ;; This program is free software; you can redistribute it and/or modify
