@@ -1,0 +1,30 @@
+* Description
+A theme that retrieves pywal colors and generates a theme using =modus-themes= theme generation functions.
+* Screenshots
+[[file:screenshot-light.png]]
+[[file:screenshot-dark.png]]
+* Installation
+- With [[https://github.com/slotThe/vc-use-package][vc-use-package]] (installed manually)
+#+begin_src emacs-lisp
+(use-package modus-ewal-theme
+  :vc (:fetcher github :repo "deadendpl/modus-ewal-theme"))
+#+end_src
+- With [[https://github.com/slotThe/vc-use-package][vc-use-package]] (built into Emacs 30+)
+#+begin_src emacs-lisp
+(use-package modus-ewal-theme
+  :vc (:url "https://github.com/deadendpl/modus-ewal-theme"))
+#+end_src
+- Without [[https://github.com/slotThe/vc-use-package][vc-use-package]]
+#+begin_src emacs-lisp
+(package-vc-install "https://github.com/deadendpl/modus-ewal-theme")
+#+end_src
+* Usage
+=load-theme= should work.
+If your pywal colors have changed, you can invoke =modus-ewal-theme-regenerate-theme=.
+By default, it will also invoke =load-theme= which you can disable with =modus-ewal-theme-load-after-regeneration-p= variable.
+* Tips
+=modus-ewal-theme-custom-faces= can be used to customize certain faces.
+The changes will be visible after running =modus-ewal-theme-regenerate-theme=.
+* Credits
+- The maintainers of [[https://github.com/cyruseuros/ewal][ewal]]
+- Protesilaos Stavrou for adding theme generating functionality to [[https://protesilaos.com/emacs/modus-themes][Modus Themes]]
