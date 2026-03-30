@@ -116,7 +116,9 @@ Look at `modus-themes-faces' for an example.")
 (defun modus-ewal-theme-generate-theme ()
   "Generate the theme."
   (if (not (ewal-load-colors))
-      (user-error "`ewal-load-colors' returned nil - you need to have the json file specified in `ewal-json-file'.")
+      (display-warning
+       'modus-ewal-theme
+       "`ewal-load-colors' returned nil - you need to have the json file specified in `ewal-json-file'.")
     (modus-ewal-theme-reload-base-palette)
     (modus-ewal-theme-reload-modus-palette)
     (modus-ewal-theme-define-theme)))
