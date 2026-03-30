@@ -118,7 +118,10 @@ Look at `modus-themes-faces' for an example.")
   (if (not (ewal-load-colors))
       (display-warning
        'modus-ewal-theme
-       "`ewal-load-colors' returned nil - you need to have the json file specified in `ewal-json-file'.")
+       (format-message
+        "%s\n%s"
+        "`ewal-load-colors' returned nil - you need to have the json file specified in `ewal-json-file'."
+        "You may need to load the `modus-ewal-theme' package again."))
     (modus-ewal-theme-reload-base-palette)
     (modus-ewal-theme-reload-modus-palette)
     (modus-ewal-theme-define-theme)))
