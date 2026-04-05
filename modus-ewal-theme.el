@@ -70,7 +70,12 @@
                          (if (modus-themes-color-dark-p bg-main)
                              "#000000"
                            "#ffffff")
-                         0.5)))))
+                         0.5))))
+    `(hl-line ((,c :background ,(if (modus-themes-color-dark-p bg-main)
+                                    bg-hl-line
+                                  (modus-themes-generate-color-blend
+                                   bg-hl-line "#000000" 0.9))
+                   :extend t))))
   "Custom faces configuration.
 Look at `modus-themes-faces' for an example.")
 
