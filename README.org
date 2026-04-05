@@ -20,8 +20,10 @@ A theme that retrieves pywal colors and generates a theme using =modus-themes= t
 #+end_src
 * Usage
 =load-theme= should work.
+
 If you don't have the pywal cache file or it's not made right, the theme will not load, and you will be messaged about it.
 In such case, you may need to load the package again.
+
 If your pywal colors have changed, you can invoke =modus-ewal-theme-regenerate-theme=.
 By default, it will also invoke =load-theme= which you can disable with =modus-ewal-theme-load-after-regeneration-p= variable.
 * Tips
