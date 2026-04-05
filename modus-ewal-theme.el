@@ -4,7 +4,7 @@
 
 ;; Author:  Oliwier Czerwiński <oliwier.czerwi@proton.me>
 ;; Keywords: faces theme
-;; Version: 20260309
+;; Version: 20260323
 ;; URL: https://github.com/deadendpl/modus-ewal-theme
 ;; Package-Requires: ((emacs "25.1") (modus-themes "5.2.0") (ewal "0.2.1"))
 
@@ -36,21 +36,10 @@
   "User options for modus-ewal-theme."
   :group 'faces)
 
-(defvar modus-ewal-theme-base-palette
-  (mapcar (lambda (element)
-            (list (car element) (cdr element)))
-          (let* ((colors (ewal-load-colors))
-                 (colors (assq-delete-all 'comment colors))
-                 (colors (assq-delete-all 'cursor colors))
-                 (colors (assq-delete-all 'white colors))
-                 (colors (assq-delete-all 'black colors)))
-            (setcar (assoc 'background colors) 'bg-main)
-            (setcar (assoc 'foreground colors) 'fg-main)
-            colors))
+(defvar modus-ewal-theme-base-palette nil
   "The base pywal palette edited to work with modus.")
 
-(defvar modus-ewal-theme-modus-palette
-  (modus-themes-generate-palette modus-ewal-theme-base-palette)
+(defvar modus-ewal-theme-modus-palette nil
   "Palette generated based on `modus-ewal-theme-base-palette'.")
 
 (defvar modus-ewal-theme-custom-faces
@@ -81,7 +70,12 @@
                          (if (modus-themes-color-dark-p bg-main)
                              "#000000"
                            "#ffffff")
-                         0.5)))))
+                         0.5))))
+    `(hl-line ((,c :background ,(if (modus-themes-color-dark-p bg-main)
+                                    bg-hl-line
+                                  (modus-themes-generate-color-blend
+                                   bg-hl-line "#000000" 0.9))
+                   :extend t))))
   "Custom faces configuration.
 Look at `modus-themes-faces' for an example.")
 
@@ -109,8 +103,8 @@ Look at `modus-themes-faces' for an example.")
   (setq modus-ewal-theme-modus-palette
         (modus-themes-generate-palette modus-ewal-theme-base-palette)))
 
-(defun modus-ewal-theme-generate-theme ()
-  "Generate the theme."
+(defun modus-ewal-theme-define-theme ()
+  "Define the theme."
   (modus-themes-theme
    'modus-ewal
    'modus-themes
@@ -124,17 +118,28 @@ Look at `modus-themes-faces' for an example.")
    nil
    'modus-ewal-theme-custom-faces))
 
+(defun modus-ewal-theme-generate-theme ()
+  "Generate the theme."
+  (if (not (ewal-load-colors))
+      (display-warning
+       'modus-ewal-theme
+       (format-message
+        "%s\n%s"
+        "`ewal-load-colors' returned nil - you need to have the json file specified in `ewal-json-file'."
+        "You may need to load the `modus-ewal-theme' package again."))
+    (modus-ewal-theme-reload-base-palette)
+    (modus-ewal-theme-reload-modus-palette)
+    (modus-ewal-theme-define-theme)))
+
 (defun modus-ewal-theme-regenerate-theme ()
   "Regenerate the theme.
 If `modus-ewal-theme-load-theme-after-regeneration-p' is non-nil, reload
 the theme as well."
-  (modus-ewal-theme-reload-base-palette)
-  (modus-ewal-theme-reload-modus-palette)
+  (interactive)
   (modus-ewal-theme-generate-theme)
   (when modus-ewal-theme-load-after-regeneration-p
     (load-theme 'modus-ewal t)))
 
-;;;###autoload
 (modus-ewal-theme-generate-theme)
 
 ;;;###autoload
