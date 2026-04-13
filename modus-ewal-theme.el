@@ -4,7 +4,7 @@
 
 ;; Author:  Oliwier Czerwiński <oliwier.czerwi@proton.me>
 ;; Keywords: faces theme
-;; Version: 20260405
+;; Version: 20260413
 ;; URL: https://github.com/deadendpl/modus-ewal-theme
 ;; Package-Requires: ((emacs "25.1") (modus-themes "5.2.0") (ewal "0.2.1"))
 
@@ -148,5 +148,5 @@ the theme as well."
     (unless (equal dir (expand-file-name "themes/" data-directory))
       (add-to-list 'custom-theme-load-path dir))))
 
-(provide 'modus-ewal-theme)
+(provide-theme 'modus-ewal)
 ;;; modus-ewal-theme.el ends here
