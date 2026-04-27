@@ -1,3 +1,4 @@
+[[https://melpa.org/#/modus-ewal-theme][file:https://melpa.org/packages/modus-ewal-theme-badge.svg]]
 * Description
 A theme that retrieves pywal colors and generates a theme using =modus-themes= theme generation functions.
 * Screenshots
