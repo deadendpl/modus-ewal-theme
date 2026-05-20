@@ -4,7 +4,7 @@
 
 ;; Author:  Oliwier Czerwiński <oliwier.czerwi@proton.me>
 ;; Keywords: faces theme
-;; Version: 20260413
+;; Version: 20260517
 ;; URL: https://github.com/deadendpl/modus-ewal-theme
 ;; Package-Requires: ((emacs "25.1") (modus-themes "5.2.0") (ewal "0.2.1"))
 
@@ -71,11 +71,12 @@
                              "#000000"
                            "#ffffff")
                          0.5))))
-    `(hl-line ((,c :background ,(if (modus-themes-color-dark-p bg-main)
-                                    bg-hl-line
-                                  (modus-themes-generate-color-blend
-                                   bg-hl-line "#000000" 0.9))
-                   :extend t))))
+    `(hl-line ((,c :background ,(modus-themes-generate-color-blend
+                                 bg-search-lazy
+                                 (if (modus-themes-color-dark-p bg-main)
+                                     "#000000"
+                                   "#ffffff")
+                                 0.8)))))
   "Custom faces configuration.
 Look at `modus-themes-faces' for an example.")
 
