@@ -5,20 +5,7 @@ A theme that retrieves pywal colors and generates a theme using =modus-themes= t
 [[file:screenshot-light.png]]
 [[file:screenshot-dark.png]]
 * Installation
-- With [[https://github.com/slotThe/vc-use-package][vc-use-package]] (installed manually)
-#+begin_src emacs-lisp
-(use-package modus-ewal-theme
-  :vc (:fetcher github :repo "deadendpl/modus-ewal-theme"))
-#+end_src
-- With [[https://github.com/slotThe/vc-use-package][vc-use-package]] (built into Emacs 30+)
-#+begin_src emacs-lisp
-(use-package modus-ewal-theme
-  :vc (:url "https://github.com/deadendpl/modus-ewal-theme"))
-#+end_src
-- Without [[https://github.com/slotThe/vc-use-package][vc-use-package]]
-#+begin_src emacs-lisp
-(package-vc-install "https://github.com/deadendpl/modus-ewal-theme")
-#+end_src
+The package is available on [[https://melpa.org/#/modus-ewal-theme][MELPA]], so you can install it with =package-install=, =use-package= or other package manager.
 * Usage
 =load-theme= should work.
 
