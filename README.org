@@ -14,6 +14,25 @@ In such case, you may need to load the package again.
 
 If your pywal colors have changed, you can invoke =modus-ewal-theme-regenerate-theme=.
 By default, it will also invoke =load-theme= which you can disable with =modus-ewal-theme-load-after-regeneration-p= variable.
+* Example configuration
+~(load-theme modus-ewal t)~ will work if you don't use Emacs daemon.
+The colors will not look right though if Emacs is run as a daemon.
+Adding the =load-theme= to =server-after-make-frame-hook= will make it work.
+Here is an example configuration that cover both cases:
+#+begin_src emacs-lisp
+(use-package modus-ewal-theme
+  :config
+  (unless (daemonp)
+    (load-theme 'modus-ewal t))
+  (defun custom-modus-ewal-theme-load-once ()
+    (and (not (member 'modus-ewal custom-enabled-themes))
+         (load-theme 'modus-ewal t))
+    ;; once run, it can be removed
+    (remove-hook 'server-after-make-frame-hook
+                 #'custom-modus-ewal-theme-load-once))
+  (add-hook 'server-after-make-frame-hook
+            #'custom-modus-ewal-theme-load-once))
+#+end_src
 * Tips
 =modus-ewal-theme-custom-faces= can be used to customize certain faces.
 The changes will be visible after running =modus-ewal-theme-regenerate-theme=.
