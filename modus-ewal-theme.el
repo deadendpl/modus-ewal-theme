@@ -132,15 +132,6 @@ Look at `modus-themes-faces' for an example.")
     (modus-ewal-theme-reload-modus-palette)
     (modus-ewal-theme-define-theme)))
 
-(defun modus-ewal-theme-regenerate-theme ()
-  "Regenerate the theme.
-If `modus-ewal-theme-load-theme-after-regeneration-p' is non-nil, reload
-the theme as well."
-  (interactive)
-  (modus-ewal-theme-generate-theme)
-  (when modus-ewal-theme-load-after-regeneration-p
-    (load-theme 'modus-ewal t)))
-
 (modus-ewal-theme-generate-theme)
 
 ;;;###autoload

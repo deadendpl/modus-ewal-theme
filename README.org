@@ -12,8 +12,12 @@ The package is available on [[https://melpa.org/#/modus-ewal-theme][MELPA]], so 
 If you don't have the pywal cache file or it's not made right, the theme will not load, and you will be messaged about it.
 In such case, you may need to load the package again.
 
-If your pywal colors have changed, you can invoke =modus-ewal-theme-regenerate-theme=.
-By default, it will also invoke =load-theme= which you can disable with =modus-ewal-theme-load-after-regeneration-p= variable.
+The theme loads new pywal colors on every load, so invoke =load-theme= after loading a new pywal colorscheme.
+You can automate it by adding a file watcher like this:
+#+begin_src emacs-lisp
+(file-notify-add-watch ewal-json-file '(change)
+                       (lambda (&rest _) (load-theme 'modus-ewal t)))
+#+end_src
 * Example configuration
 ~(load-theme modus-ewal t)~ will work if you don't use Emacs daemon.
 The colors will not look right though if Emacs is run as a daemon.
