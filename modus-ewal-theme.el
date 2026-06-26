@@ -4,7 +4,7 @@
 
 ;; Author:  Oliwier Czerwiński <oliwier.czerwi@proton.me>
 ;; Keywords: faces theme
-;; Version: 20260609
+;; Version: 20260626
 ;; URL: https://github.com/deadendpl/modus-ewal-theme
 ;; Package-Requires: ((emacs "25.1") (modus-themes "5.2.0") (ewal "0.2.1"))
 
@@ -79,11 +79,6 @@
                                  0.8)))))
   "Custom faces configuration.
 Look at `modus-themes-faces' for an example.")
-
-(defcustom modus-ewal-theme-load-after-regeneration-p t
-  "Whether to load the theme after regenerating it."
-  :group 'modus-ewal-theme
-  :type 'boolean)
 
 (defun modus-ewal-theme-reload-base-palette ()
   "Regenerate the base palette."
