@@ -1,3 +1,4 @@
+#+TITLE: Modus Ewal theme
 [[https://melpa.org/#/modus-ewal-theme][file:https://melpa.org/packages/modus-ewal-theme-badge.svg]]
 * Description
 A theme that retrieves pywal colors and generates a theme using =modus-themes= theme generation functions.
@@ -39,7 +40,26 @@ Here is an example configuration that covers both cases:
 #+end_src
 * Tips
 =modus-ewal-theme-custom-faces= can be used to customize certain faces.
-The changes will be visible after running =modus-ewal-theme-regenerate-theme=.
+The changes will be visible after loading the theme again.
+
+For example, to customize a face, you can add a face configuration like this:
+#+begin_src emacs-lisp
+(add-to-list 'modus-ewal-theme-custom-faces
+             (quote `(show-paren-match ((,c :foreground "green")))))
+#+end_src
+The =quote= function is neccessary as we don't want the =c= variable to be evaluated yet.
+
+We can also change the values whether the theme is light or dark like this:
+#+begin_src emacs-lisp
+(add-to-list 'modus-ewal-theme-custom-faces
+             (quote `(show-paren-match
+                      ((,c :foreground
+                        ,(if (modus-themes-color-dark-p bg-main)
+                             "red"
+                           "blue"))))))
+#+end_src
+
+Instead of red, green, blue or other simple colors, you can use modus color variables that you can see in =modus-ewal-theme-modus-palette= variable.
 * Credits
 - The maintainers of [[https://github.com/cyruseuros/ewal][ewal]]
 - Protesilaos Stavrou for adding theme generating functionality to [[https://protesilaos.com/emacs/modus-themes][Modus Themes]]
