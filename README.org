@@ -20,7 +20,7 @@ You can automate it by adding a file watcher like this:
                        (lambda (&rest _) (load-theme 'modus-ewal t)))
 #+end_src
 * Example configuration
-~(load-theme modus-ewal t)~ will work if you don't use Emacs daemon.
+~(load-theme 'modus-ewal t)~ will work if you don't use Emacs daemon.
 The colors will not look right though if Emacs is run as a daemon.
 Adding the =load-theme= to =server-after-make-frame-hook= will make it work.
 Here is an example configuration that covers both cases:
